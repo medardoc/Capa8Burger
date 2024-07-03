@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capa8</title>
+    <link rel="icon" href="/img/king_Navidenio_v1.png" type="image/png">
+    <link rel="stylesheet" href="/CSS/style.css">
+</head>
+<header><h1>Registrate</h1></header>
+<body>
+    <form id="formulario-registro" action="/guardar_usuarios" method="post">
+    
+        <div>
+            <label for="nombre">Nombre Usuario:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div>
+            <label for="contraseña">Contraseña:</label>
+            <input type="text" id="contraseña" name="contraseña" required>
+        
+        </div>
+
+        <div>
+            <label for="correo">Correo:</label>
+            <input type="text" id="correo" name="correo" required>
+        </div>
+
+        <div>
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" required>
+        </div>
+
+        <label for="rol">Rol:</label>
+        <select id="rol" name="rol" required>
+            <option value="1">Administrador</option>
+            <option value="2">Usuario</option>
+        </select>
+
+        <input type="submit" value="Enviar">
+    </form>
+    <script src="/JS/script.js"></script>
+    <footer>
+        <div class="container">
+            <p>&copy; Capa-8 Burger Corporation</p>
+        </div>
+    </footer>
+
+</body>
+</html>
