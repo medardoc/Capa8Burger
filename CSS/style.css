@@ -235,3 +235,38 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #ffcc00;
 }
+button {
+    padding: 0.75rem;
+    background-color: #ffcc00;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ffcc00;
+}
+.add-to-cart {
+    background-color: #ffcc00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: #ffcc00;
+}
+main {
+    padding: 20px;
+}
+.centroObjetosdelcarro{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: left;
+    margin-top: 20px;
+}

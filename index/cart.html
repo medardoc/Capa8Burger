@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!--Esta codificacion esta hecha y basada en la misma estructura de Valentine Store, sirve para mostrar a traves de una instancia otra pestaña
+que contiene otro tipo de informacion y caracteristicas-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="icon" href="/img/222.png" type="image/png">
+    <link rel="stylesheet" href="/CSS/style.css">
+</head>
+<body>
+    <header>
+        <h1>Carrito de Compras</h1>
+        <nav>
+            <ul>
+                <li><a href="/index/usuario.html">Volver al portal</a></li> <!-- Corregido -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Productos en tu carrito</h2>
+        <div class="centroObjetosdelcarro">
+        <section id="carrito">
+            
+            
+            <div class="cart-items">
+                <!-- Aquí se mostrarán los productos del carrito -->
+            </div>
+            <div class="cart-total">
+                <h3>Total: $<span id="cart-total">0</span></h3>
+            </div>
+            <button id="checkout">Proceder al Pago</button>
+        </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Capa8 Burger - Todos los derechos reservados</p>
+    </footer>
+
+    <script src="/JS/cart.js"></script>
+</body>
+</html>

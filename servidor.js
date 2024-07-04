@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mysql = require('mysql2');
+const nodemailer = require('nodemailer'); 
 
 // Middleware para parsear el body de las solicitudes en formato JSON y URL encoded
 app.use(express.json());
@@ -98,6 +99,82 @@ app.get('/iniciarSesion', (req, res) => {
 
 app.get('/registrar', (req, res) => {
     res.sendFile(path.join(__dirname, 'index', 'registrar.html'));
+});
+
+app.get('/cart', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index', 'Cart.html'));
+});
+
+app.post('/send-email', (req, res) => {
+    const { email, cart } = req.body;
+
+    console.log('Datos del carrito:', cart); // Agregado para depuración
+
+    // Calcular el total de la compra
+    const totalAmount = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+
+    const transporter = nodemailer.createTransport({
+        service: 'hotmail',
+        auth: {
+            user: 'trabajo_tony@hotmail.com',
+            pass: 'Ivanna2@2@'
+        }
+    });
+
+    const mailOptions = {
+        from: 'trabajo_tony@hotmail.com',
+        to: email,
+        subject: 'Compra Confirmada',
+        text: `Su compra ha sido confirmada. Detalles del carrito: ${JSON.stringify(cart)}\n\nMonto total: $${totalAmount.toFixed(2)}`
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error al enviar el correo:', error);
+            res.status(500).json({ success: false });
+        } else {
+            console.log('Correo enviado:', info.response);
+            res.status(200).json({ success: true });
+        }
+    });
+});
+
+app.post('/process-purchase', (req, res) => {
+    const { name, lastname, email } = req.body;
+
+    const query = 'INSERT INTO UsuariosCompra (Nombre, Apellido, Email) VALUES (?, ?, ?)';
+    connection.execute(query, [name, lastname, email], (err, results) => {
+        if (err) {
+            console.error('Error saving user:', err);
+            res.status(500).json({ success: false });
+            return;
+        }
+
+        const transporter = nodemailer.createTransport({
+            service: 'hotmail',
+            auth: {
+                user: 'trabajo_tony@hotmail.com',
+                pass: 'Ivanna2@2@'
+            }
+        });
+
+        const mailOptions = {
+            from: 'trabajo_tony@hotmail.com',
+            to: email,
+            subject: 'Compra realizada con éxito',
+            text: `Gracias por su compra, en las proxima hora uno de nuestros ejecutivos se contactara con usted para coordinar la entrega.`
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+                res.status(500).json({ success: false });
+            } else {
+                console.log('Email sent: ' + info.response);
+                res.redirect(303, '/'); // Redirigir a la página principal después de procesar la compra
+            }
+        });
+    });
 });
 
 const PORT = process.env.PORT || 3000;
