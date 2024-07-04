@@ -177,6 +177,32 @@ app.post('/process-purchase', (req, res) => {
     });
 });
 
+// Endpoint para obtener usuarios
+app.get('/get-usuarios', (req, res) => {
+    const query = 'SELECT Nombre, Correo, Edad, Rol FROM usuarios';
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching usuarios:', err);
+            res.status(500).send('Error fetching usuarios');
+        } else {
+            res.json(results);
+        }
+    });
+});
+
+// Endpoint para obtener pedidos
+app.get('/get-pedidos', (req, res) => {
+    const query = 'SELECT Nombre, Apellido, Email FROM UsuariosCompra';
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching pedidos:', err);
+            res.status(500).send('Error fetching pedidos');
+        } else {
+            res.json(results);
+        }
+    });
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
