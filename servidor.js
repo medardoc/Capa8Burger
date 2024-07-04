@@ -9,9 +9,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection({
-    host: '127.0.1.1',
-    user: 'root',
-    password: '',
+    host: '10.0.6.39',
+    user: 'estudiante',
+    password: 'Info-2023',
     database: 'tiendavirtual'
 });
 
