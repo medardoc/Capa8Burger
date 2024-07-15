@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mysql = require('mysql2');
-const nodemailer = require('nodemailer'); 
+const nodemailer = require('nodemailer');
 
 // Middleware para parsear el body de las solicitudes en formato JSON y URL encoded
 app.use(express.json());
@@ -116,13 +116,13 @@ app.post('/send-email', (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'hotmail',
         auth: {
-            user: 'trabajo_tony@hotmail.com',
-            pass: 'Ivanna2@2@'
+            user: 'example@hotmail.com', //Aquí debes colocar tu correo y clave 
+            pass: 'Example1234'
         }
     });
 
     const mailOptions = {
-        from: 'trabajo_tony@hotmail.com',
+        from: 'example@hotmail.com',  //Aquí debes colocar tu correo
         to: email,
         subject: 'Compra Confirmada',
         text: `Su compra ha sido confirmada. Detalles del carrito: ${JSON.stringify(cart)}\n\nMonto total: $${totalAmount.toFixed(2)}`
@@ -153,13 +153,13 @@ app.post('/process-purchase', (req, res) => {
         const transporter = nodemailer.createTransport({
             service: 'hotmail',
             auth: {
-                user: 'trabajo_tony@hotmail.com',
-                pass: 'Ivanna2@2@'
+                user: 'example@hotmail.com', //Aquí debes colocar tu correo y clave 
+                pass: 'Example1234'
             }
         });
 
         const mailOptions = {
-            from: 'trabajo_tony@hotmail.com',
+            from: 'example@hotmail.com',
             to: email,
             subject: 'Compra realizada con éxito',
             text: `Gracias por su compra, en las proxima hora uno de nuestros ejecutivos se contactara con usted para coordinar la entrega.`
